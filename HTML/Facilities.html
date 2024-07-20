@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image_Slidder</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  background: black;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+#facili{
+  font-family: 'cambria', sans-serif;
+  padding-bottom: 5%;
+  color: rgb(0, 0, 0);
+  padding-left:6%;
+}
+
+.cards-container {
+    display: flex;
+    padding-top: 1%;
+    gap: 0px;
+    justify-content: center;
+  }
+
+.card {
+  width: 250px;
+  height: 350px;
+  aspect-ratio: 1 / 0.7;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.card .image-box {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.card .image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 90%;
+  border-radius: inherit;
+  transition: 0.75s ease-in-out;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid white;
+  border-radius: inherit;
+  opacity: 0;
+  transition: 0.4s ease-in-out;
+}
+
+.card:hover img {
+  filter: grayscale(1) brightness(0.4);
+}
+
+.card:hover::after {
+  opacity: 1;
+  inset: 20px;
+}
+
+.content {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.content h2,
+.content p {
+  opacity: 0;
+  transition: 0.4s 0.2s ease;
+}
+.content h2 {
+  margin-bottom: 12px;
+  scale: 0.7;
+}
+.content p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #d1d1d1;
+  transform: translateY(50%);
+}
+.card:hover .content h2 {
+  scale: 1;
+  opacity: 1;
+  color: aliceblue;
+}
+.card:hover .content P {
+  opacity: 1;
+  color: aliceblue;
+  transform: translateY(0);
+}
+.iframe-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none; /* Hide by default */
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .iframe-container iframe {
+        width: 80%;
+        height: 80%;
+        border: none;
+        border-radius: 8px;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #e74c3c;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+<h1 id="facili"> << Facilities We Offer!>> </h1>
+  <div class="cards-container">
+  <div class="card">
+    <div class="image-box">
+      <img src="Food.jpg" alt="Fiddle Leaf">
+    </div>
+    <div class="content">
+      <h2>5 Star Food</h2>
+      <p>Let it be Chineese, Indian, Arabic we have it all</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="image-box">
+      <img src="Pool.jpg" alt="Pink Princess">
+    </div>
+    <div class="content">
+      <h2>Pool</h2>
+      <p>Dive into relaxation and rejuvenation at our pristine pool. Enjoy a refreshing swim or simply lounge by the water, soaking up the sun in our tranquil oasis</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-box">
+      <img src="Gym.jpg" alt="Fiddle Leaf">
+    </div>
+    <div class="content">
+      <h2>Gym</h2>
+      <p>Sculpt your ideal physique in our state-of-the-art gym. Whether you're a fitness enthusiast or a beginner, our top-notch equipment and expert trainers will help you reach your goals.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-box">
+      <img src="Spa.jpg" alt="Fiddle Leaf">
+    </div>
+    <div class="content">
+      <h2>Spa</h2>
+      <p>Indulge in pure bliss at our luxurious spa. Treat yourself to a pampering session with our range of rejuvenating treatments, designed to melt away stress and leave you feeling renewed.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="image-box">
+      <img src="Heli.jpg" alt="Fiddle Leaf">
+    </div>
+    <div class="content">
+      <h2>HeliPad</h2>
+      <p>Arrive in style with our exclusive helipad service. Elevate your experience and enjoy seamless access to our hotel, offering unparalleled convenience for our distinguished guests.</p>
+    </div>
+  </div>
+  </div>
+  <div class="iframe-container" id="iframeContainer">
+    <button class="close-btn" onclick="closeIframe()">Close</button>
+    <iframe id="iframe" src=""></iframe>
+</div>
+
+</body>
+</html>

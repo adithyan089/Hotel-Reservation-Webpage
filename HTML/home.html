@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Lesna - A Tranquil Escape in Nature</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        header {
+            position: relative;
+            text-align: center;
+            color: rgb(243, 250, 240);
+            overflow: hidden; /* Ensure no overflow */
+        }
+
+        header img {
+            width: 100%;
+            height: 80vh;
+            object-fit: cover;
+        }
+
+        header h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6em;
+            font-family: 'Your Font Name', sans-serif;
+        }
+
+        .motto {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.5em;
+            color: white;
+        }
+
+        /* Reviews Section Styles */
+        .reviews {
+            background-color: #f8f8f8;
+            padding: 50px 20px;
+        }
+
+        .reviewcontainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .reviews h2 {
+            text-align: center;
+            color: #005959;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        .review-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 300px;
+            margin: 0 10px; /* Adjust margin to create space between cards */
+        }
+
+        .review-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .review-card p {
+            text-align: center;
+            color: #333;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #008080;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #005959;
+        }
+        .iframe-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .iframe-container iframe {
+            width: 80%;
+            height: 80%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            bottom:0px;
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Hotel Image and Name -->
+    <header>
+        <img src="Hotelmain.jpg" alt="Hotel Lesna" style="filter: brightness(50%) grayscale(10%); position: relative; object-fit: cover;">
+        <h1 style="text-align: center;">
+            <img src="HotelLogo.webp" alt="Img" style="width: 100%; height: 100%; display: flex; margin: 0 auto;">
+        </h1>
+    </header>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <h2 style="font-family: 'Times New Roman', Times, serif;">Guest Reviews</h2>
+        <div class="reviewcontainer">
+            <div class="review-card">
+                <img src="person1.jpg" alt="Guest Photo">
+                <p>"A truly tranquil escape! The staff were amazing and the surroundings breathtaking. Will definitely visit again!"</p>
+            </div>
+            <div class="review-card">
+                <img src="person2.jpg" alt="Guest Photo">
+                <p>"The perfect getaway from the hustle and bustle of city life. The hotel offers unmatched luxury and comfort."</p>
+            </div>
+            <div class="review-card">
+                <img src="person3.jpg" alt="Guest Photo">
+                <p>"An unforgettable experience! The views are stunning and the atmosphere is incredibly peaceful."</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="iframe-container" id="iframeContainer">
+        <button class="close-btn" onclick="closeIframe()">Close</button>
+        <iframe id="iframe" src=""></iframe>
+    </div>
+    <script>
+        function openIframe(src) {
+            const iframeContainer = document.getElementById('iframeContainer');
+            const iframe = document.getElementById('iframe');
+            iframe.src = src;
+            iframeContainer.style.display = 'flex';
+        }
+
+        function closeIframe() {
+            const iframeContainer = document.getElementById('iframeContainer');
+            const iframe = document.getElementById('iframe');
+            iframe.src = '';
+            iframeContainer.style.display = 'none';
+        }
+
+        // Example login function to show iframe for logout
+        function login() {
+            // Assuming login logic is here
+            // After successful login, show logout in iframe
+            openIframe('logout.html');
+        }
+    </script>
+</body>
+</html>
