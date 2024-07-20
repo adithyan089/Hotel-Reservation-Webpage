@@ -18,12 +18,10 @@ This project is a hotel room reservation webpage developed using HTML, CSS, and 
 ## Login Page:
 Here it includes Sign-in and Sign-Up..
 ![Designer](https://github.com/user-attachments/assets/a84d3168-3754-4372-96d8-a2207a71fdb0)
-## Index-Page:
-Index page contains the Navigation Section of User Page
-
-
 ## Home-Page:
+Index page contains the Navigation Section.
 Home Page is the welcome page with Guest Reviews and all..
+![Screenshot (208)](https://github.com/user-attachments/assets/b0cd0f52-d316-4ac5-a67b-edbba4cf26f6)
 
 
 ## Rooms-Page:
