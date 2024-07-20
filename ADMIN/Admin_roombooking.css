@@ -1,0 +1,130 @@
+/* General Styling */
+body {
+  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+  background-color: #ffffff; /* Set the background color to white */
+  margin: 0; /* No margin */
+  background-color: #f1f1f1; /* Set the background color to a mix of colors */
+  padding: 20px; /* Padding around the page */
+}
+
+/* Search Section */
+.searchsection {
+  display: flex; /* Display elements in a row */
+  justify-content: space-between; /* Space out elements evenly */
+  align-items: center; /* Center-align items vertically */
+  margin-bottom: 20px; /* Margin below the section */
+}
+
+.searchsection input {
+  padding: 10px; /* Padding inside input */
+  border: 1px solid #ced4da; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.searchsection button {
+  padding: 10px 15px; /* Padding inside button */
+  background-color: #1428d6; /* Blue background color */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-left: 10px; /* Space to the left */
+}
+
+.searchsection button:hover {
+  background-color: #587fa9; /* Darker blue on hover */
+}
+
+/* Reservation Form */
+#reservationForm {
+  background-color: white; /* White background */
+  padding: 20px; /* Padding inside the form */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin-bottom: 20px; /* Margin below the form */
+}
+
+#reservationForm label {
+  display: block; /* Display labels as block */
+  margin-bottom: 5px; /* Margin below labels */
+  font-weight: bold; /* Bold text */
+}
+
+#reservationForm input,
+#reservationForm select {
+  width: 100%; /* Full width */
+  padding: 10px; /* Padding inside inputs */
+  margin-bottom: 15px; /* Margin below inputs */
+  border: 1px solid #ced4da; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+}
+
+#reservationForm button {
+  padding: 10px 15px; /* Padding inside button */
+  background-color: #28a745; /* Green background color */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+#reservationForm button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Room Booking Table */
+.roombooktable {
+  background-color: rgb(120, 204, 220); /* White background */
+  padding: 20px; /* Padding inside the table container */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.roombooktable table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Collapse borders */
+  margin-bottom: 0; /* No margin below */
+}
+
+.roombooktable th, .roombooktable td {
+  border: 1px solid #080808; /* Light border */
+  padding: 12px; /* Padding inside cells */
+  text-align: center; /* Center-align text */
+}
+
+.roombooktable th {
+  background-color: #d38fdb; /* Blue background color */
+  color: white; /* White text */
+}
+
+.roombooktable td button {
+  padding: 8px 12px; /* Padding inside buttons */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  color: rgb(255, 255, 255); /* White text */
+  margin: 0 4px; /* Space between buttons */
+}
+
+.roombooktable td button:hover {
+  opacity: 0.8; /* Slight transparency on hover */
+}
+
+.searchsection input {
+  width: 78%; /* Increase the width of the search bar */
+  padding: 10px; /* Padding inside input */
+  border: 1px solid #ced4da; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+}
+.roombooktable th button {
+  padding: 8px 12px; /* Padding inside buttons */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  color: white; /* White text */
+  margin: 0 4px; /* Space between buttons */
+}
+
+.roombooktable th button:hover {
+  opacity: 0.8; /* Slight transparency on hover */
+}

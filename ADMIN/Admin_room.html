@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Importing Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Importing Bootstrap for layout and styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="Admin_room.css">
+    <style>
+        /* Importing Google fonts for the page */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        /* Root variables for theme colors */
+        :root {
+            --primary-color: #0808eb;
+            --secondary-color: #040604;
+            --success-color: #2ded0b;
+            --danger-color: #fb0e0e;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #889fb7;
+            --text-color: #010000c8;
+            --background-color: #2accda;
+        }
+
+        /* General body styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling the add room section */
+        .addroomsection {
+            background-color: #f306a8;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            height: 12%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .addroomsection form {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .addroomsection form label {
+            color: #000000;
+            margin-right: 10px;
+        }
+
+        .addroomsection form select,
+        .addroomsection form button {
+            margin-right: 10px;
+        }
+
+        .addroomsection form button {
+            background-color: var(--success-color);
+            border: none;
+            color: #4e7688;
+            padding: 9px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.5s;
+        }
+
+        .addroomsection form button:hover {
+            background-color: var(--success-color);
+            filter: brightness(0.9);
+        }
+
+        /* Styling room section */
+        .room {
+            padding-top: 80px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 100px 0;
+        }
+
+        .room .row {
+            display: flex;
+            width: 90%;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .room-item {
+            background-color: rgb(230, 7, 63);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: box-shadow 0.3s;
+        }
+
+        .room-item:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .room-item h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .room-item p {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .room-item button {
+            background-color: var(--primary-color);
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .room-item button:hover {
+            background-color: var(--danger-color);
+            filter: brightness(0.9);
+        }
+
+        .btn-danger {
+            background-color: #3f7fc4;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Form for adding new rooms -->
+    <div class="addroomsection">
+        <form action="" method="POST">
+            <label for="troom">Type of Room:</label>
+            <select name="troom" class="form-control" required>
+                <option value="" disabled selected>Select room type  </option>
+                <option value="Superior Room">SUPERIOR ROOM</option>
+                <option value="Deluxe Room">DELUXE ROOM</option>
+                <option value="Guest House">EXECUTIVE ROOM</option>
+                <option value="Single Room">SUITE ROOM</option>
+            </select>
+
+            <label for="bed">Type of Bed:</label>
+            <select name="bed" class="form-control" required>
+                <option value="" disabled selected>Select bed type </option>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Triple">Triple</option>
+                <option value="Quad">Quad</option>
+                <option value="None">None</option>
+            </select>
+
+            <button type="submit" class="btn btn-success mt-3" name="addroom">Add Room</button>
+        </form>
+    </div>
+
+    <div class="room">
+        <div class="row">
+            <!-- Row 1 -->
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Superior Room</h3>
+                    <p>Bed Type: Single</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Superior Room</h3>
+                    <p>Bed Type: Double</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Superior Room</h3>
+                    <p>Bed Type: Triple</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Superior Room</h3>
+                    <p>Bed Type: Quad</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Row 2 -->
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Deluxe Room</h3>
+                    <p>Bed Type: Single</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Deluxe Room</h3>
+                    <p>Bed Type: Double</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Deluxe Room</h3>
+                    <p>Bed Type:Triple</p>
+                    <button class="btn btn
+                    -danger">Delete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Deluxe Room</h3>
+                    <p>Bed Type: Quad</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Row 3 -->
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Executive Room</h3>
+                    <p>Bed Type: Single</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Executive Room</h3>
+                    <p>Bed Type: Double</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Executive Room</h3>
+                    <p>Bed Type:Triple</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Executive Room</h3>
+                    <p>Bed Type: Quad</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Row 4 -->
+            <div class="col-md-3">
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>Suite Room</h3>
+                    <p>Bed Type: Single</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to create and append a new room item
+        function createAndAppendRoomItem(roomType, bedType) {
+            // Create a new div element for the room item
+            var roomItem = document.createElement('div');
+
+            // Add the 'room-item' class and the room/bed type classes
+            roomItem.classList.add('col-md-3');
+            roomItem.innerHTML = `
+                <div class="room-item">
+                    <i class="fas fa-bed"></i>
+                    <h3>${roomType}</h3>
+                    <p>Bed Type: ${bedType}</p>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            `;
+
+            // Find the last row and append the new room item
+            const roomContainer = document.querySelector('.room');
+            let lastRow = roomContainer.querySelector('.row:last-child');
+
+            // Check if the last row has fewer than 4 room items
+            if (lastRow && lastRow.childElementCount < 4) {
+                lastRow.appendChild(roomItem);
+            } else {
+                // Create a new row and append the new room item
+                const newRow = document.createElement('div');
+                newRow.classList.add('row');
+                newRow.appendChild(roomItem);
+                roomContainer.appendChild(newRow);
+            }
+
+            // Add event listener to the delete button
+            roomItem.querySelector('.btn-danger').addEventListener('click', function () {
+                deleteRoomItem(roomItem);
+            });
+        }
+
+        // Function to delete a room item
+        function deleteRoomItem(roomItem) {
+            const row = roomItem.parentElement;
+            roomItem.remove();
+
+            // Remove row if it has no children
+            if (row.childElementCount === 0) {
+                row.remove();
+            }
+        }
+
+        // Event listener for the "Add Room" button
+        document.querySelector('button[name="addroom"]').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            const roomType = document.querySelector('select[name="troom"]').value;
+            const bedType = document.querySelector('select[name="bed"]').value;
+            createAndAppendRoomItem(roomType, bedType);
+        });
+
+        // Add event listeners to existing delete buttons
+        document.querySelectorAll('.room-item .btn-danger').forEach(button => {
+            button.addEventListener('click', function () {
+                deleteRoomItem(this.closest('.col-md-3'));
+            });
+        });
+    </script>
+</body>
+</html>

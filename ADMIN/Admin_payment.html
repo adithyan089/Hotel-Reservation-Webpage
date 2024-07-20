@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel LESNA - Admin Payments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Admin_roombooking.css">
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #2accda; /* Brown */
+            margin: 0;
+            padding: 20px;
+            color: #fff; /* White */
+        }
+
+        /* Search Section */
+        .search-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-section input {
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 70%;
+        }
+
+        .search-section button {
+            padding: 10px 15px;
+            background-color: #3e1a0e; /* Dark brown */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-section button:hover {
+            background-color: #5a3023; /* Light brown */
+        }
+
+        /* Payment Table */
+        .payment-table {
+            background-color: #c6d18b; /* Turquoise */
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0;
+            background-color: #fff;
+        }
+
+        .payment-table th, .payment-table td {
+            border: 1px solid #763838;
+            padding: 12px;
+            text-align: center;
+            color: #c44415; /* Brown */
+        }
+
+        .payment-table th {
+            background-color: #3e1a0e; /* Dark brown */
+            color: #fff;
+        }
+
+        .payment-table td button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+            margin: 0 4px;
+            transition: background-color 0.3s;
+        }
+
+        .payment-table td button:hover {
+            background-color: #be745e; /* Light brown */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>Payment Details</h1>
+        <br>
+        <div class="search-section mb-3">
+            <button class="btn btn-secondary" onclick="downloadCSV()"><i class="fas fa-download"></i> Download CSV</button>
+            <input type="text" class="form-control" id="search-bar" placeholder="Search..." onkeyup="searchFunction()">
+            <button class="btn btn-primary" onclick="resetSearch()">Reset</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered payment-table" id="table-data">
+                <thead>
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>Customer Name</th>
+                        <th>Payment Date</th>
+                        <th>Amount</th>
+                        <th>Payment Method</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul Ram</td>
+                        <td>2024-05-01</td>
+                        <td>₹3800</td>
+                        <td>Credit Card</td>
+                        <td>Completed</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rajeev Revi</td>
+                        <td>2024-05-05</td>
+                        <td>₹5000</td>
+                        <td>Bank Transfer</td>
+                        <td>Completed</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Sarah Mathew</td>
+                        <td>2024-05-07</td>
+                        <td>₹3200</td>
+                        <td>Debit Card</td>
+                        <td>Pending</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Ebin joshy</td>
+                        <td>2024-05-10</td>
+                        <td>₹2500</td>
+                        <td>PayPal</td>
+                        <td>Completed</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Madavan Mahadevan</td>
+                        <td>2024-05-15</td>
+                        <td>₹4200</td>
+                        <td>Credit Card</td>
+                        <td>Completed</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Lisa John</td>
+                        <td>2024-05-20</td>
+                        <td>₹3000</td>
+                        <td>Bank Transfer</td>
+                        <td>Pending</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>David James</td>
+                        <td>2024-05-25</td>
+                        <td>₹1800</td>
+                        <td>Debit Card</td>
+                        <td>Completed</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Emily Eby</td>
+                        <td>2024-05-30</td>
+                        <td>₹5500</td>
+                        <td>PayPal</td>
+                        <td>Completed</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>John Samuel</td>
+                        <td>2024-06-15</td>
+                        <td>₹2500</td>
+                        <td>Credit Card</td>
+                        <td>Completed</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Jane George</td>
+                        <td>2024-06-20</td>
+                        <td>₹1800</td>
+                        <td>Debit Card</td>
+                        <td>Completed</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Robert Silvester</td>
+                        <td>2024-06-25</td>
+                        <td>₹3200</td>
+                        <td>Bank Transfer</td>
+                        <td>Pending</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Jessica Thomas</td>
+                        <td>2024-06-30</td>
+                        <td>₹4800</td>
+                        <td>PayPal</td>
+                        <td>Completed</td>
+                        <td class="action">
+                            <button class="btn btn-secondary" onclick="sendReceipt(this)">
+                                <i class="fas fa-envelope"></i> Send Receipt
+                            </button>
+                            <button class="btn btn-danger" onclick="refundPayment(this)">Refund</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Function to search for text in the table
+        function searchFunction() {
+            let filter = document.getElementById('search-bar').value.toUpperCase();
+            let table = document.getElementById('table-data');
+            let rows = table.getElementsByTagName('tr');
+    
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName('td');
+                let matchFound = false;
+    
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toUpperCase().includes(filter)) {
+                        matchFound = true;
+                        break;
+                    }
+                }
+    
+                if (matchFound) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    
+        // Function to reset the search
+        function resetSearch() {
+            document.getElementById('search-bar').value = "";
+            searchFunction(); // Call search function to reset table display
+        }
+    
+        // Function to simulate sending a receipt
+        function sendReceipt(button) {
+            let row = button.closest('tr');
+            let customerName = row.querySelector('td:nth-child(2)').innerText;
+            alert("Receipt sent to " + customerName);
+        }
+    
+        // Function to handle refunding payment
+        function refundPayment(button) {
+            // Assuming you have a confirmation dialog before refunding
+            if (confirm("Are you sure you want to refund this payment?")) {
+                let row = button.closest('tr');
+                let statusCell = row.querySelector('td:nth-child(6)'); // Selecting the status cell in the same row
+                statusCell.innerText = 'Refunded';
+                alert("Payment refunded successfully");
+            }
+        }
+
+        // Function to download table data as CSV
+        function downloadCSV() {
+            let table = document.getElementById('table-data');
+            let rows = table.getElementsByTagName('tr');
+            let csvContent = "data:text/csv;charset=utf-8,";
+    
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName('td');
+                let rowContent = [];
+    
+                for (let j = 0; j < cells.length; j++) {
+                    rowContent.push(cells[j].innerText);
+                }
+    
+                csvContent += rowContent.join(",") + "\r\n";
+            }
+    
+            let encodedUri = encodeURI(csvContent);
+            let link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "payments.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+    
+</body>
+</html>

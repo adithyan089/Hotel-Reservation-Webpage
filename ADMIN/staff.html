@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTEL LESNA- Admin</title>
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #88bec4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+       
+        .navbar {
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .navbar a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+
+        .navbar a#filterAll::before {
+            background-color: #84c7dc;
+        }
+
+        .navbar a#filterManager::before {
+            background-color: #5db526;
+        }
+
+        .navbar a#filterCook::before {
+            background-color: #395db3;
+        }
+
+        .navbar a#filterCleaner::before {
+            background-color: #ffce44;
+        }
+
+        .navbar a#filterWaiter::before {
+            background-color: #ff6f61;
+        }
+
+        .addroomsection {
+            margin-bottom: 20px;
+            background-color: #aa06f6;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .addroomsection label {
+            margin-top: 10px;
+        }
+
+        .room {
+            background-color: #acebee;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+        .modal-content {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            background-color: #343a40;
+            color: white;
+            border-bottom: none;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+        .roombox {
+            background-color: #84c7dc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex: 1 1 calc(25% - 20px);
+            box-sizing: border-box;
+        }
+
+        .roombox[data-role="Manager"] {
+            background-color: #5db526;
+        }
+
+        .roombox[data-role="Cook"] {
+            background-color: #395db3;
+        }
+
+        .roombox[data-role="Cleaner"] {
+            background-color: #ffce44;
+        }
+
+        .roombox[data-role="Waiter"] {
+            background-color: #ff6f61;
+        }
+
+        .roombox i {
+            color: #007bff;
+        }
+
+        .roombox h3 {
+            margin-top: 10px;
+            font-size: 1.25rem;
+        }
+
+        .roombox .mb-1 {
+            margin-bottom: 1rem;
+        }
+
+        .staff-details {
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        .btn-delete,
+        .btn-edit {
+            margin-top: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+            .addStaffModal{
+                background-color: #000;
+                
+            }
+            #addStaffButton {
+                background-color: hsl(5, 60%, 73%);
+                padding: 10px 20px;
+                border-radius: 5px;
+                color: white;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a href="#" id="addStaffButton" data-bs-toggle="modal" data-bs-target="#addStaffModal">Add Staff</a>
+            <a href="#" id="filterAll">All</a>
+            <a href="#" id="filterManager">Managers</a>
+            <a href="#" id="filterCook">Cooks</a>
+            <a href="#" id="filterCleaner">Cleaners</a>
+            <a href="#" id="filterWaiter">Waiters</a>
+        </div>
+
+        <div class="room">
+            <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search Staff...">
+            <div id="staff-list">
+                <div class="box-container">
+                    <!-- Permanent Staff Boxes -->
+                    <div class="roombox" data-role="Manager">
+                        <div class="text-center no-border">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3>John Doe</h3>
+                            <div class="mb-1 staff-details">Role: Manager</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-edit" data-name="John Doe" data-role="Manager">Edit</button>
+                                <button class="btn btn-danger btn-delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roombox" data-role="Cook">
+                        <div class="text-center no-border">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3>Jane Smith</h3>
+                            <div class="mb-1 staff-details">Role: Cook</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-edit" data-name="Jane Smith" data-role="Cook">Edit</button>
+                                <button class="btn btn-danger btn-delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roombox" data-role="Cleaner">
+                        <div class="text-center no-border">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3>Mike Johnson</h3>
+                            <div class="mb-1 staff-details">Role: Cleaner</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-edit" data-name="Mike Johnson" data-role="Cleaner">Edit</button>
+                                <button class="btn btn-danger btn-delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roombox" data-role="Waiter">
+                        <div class="text-center no-border">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3>Sarah Lee</h3>
+                            <div class="mb-1 staff-details">Role: Waiter</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-edit" data-name="Sarah Lee" data-role="Waiter">Edit</button>
+                                <button class="btn btn-danger btn-delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roombox" data-role="Waiter">
+                        <div class="text-center no-border">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3>Anita Sharma</h3>
+                            <div class="mb-1 staff-details">Role: Waiter</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-edit" data-name="Anita Sharma" data-role="Waiter">Edit</button>
+                                <button class="btn btn-danger btn-delete">Delete</button>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="roombox" data-role="Cleaner">
+                        <div class="text-center no-border">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3>Rajesh Patel</h3>
+                            <div class="mb-1 staff-details">Role: Cleaner</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-edit" data-name="Rajesh Patel" data-role="Cleaner">Edit</button>
+                                <button class="btn btn-danger btn-delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roombox" data-role="Waiter">
+                        <div class="text-center no-border">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3>Anita Sharma</h3>
+                            <div class="mb-1 staff-details">Role: Waiter</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-edit" data-name="Anita Sharma" data-role="Waiter">Edit</button>
+                                <button class="btn btn-danger btn-delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roombox" data-role="Waiter">
+                        <div class="text-center no-border">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3>Anikha Sharma</h3>
+                            <div class="mb-1 staff-details">Role: Cleaner</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-edit" data-name="Anikha Sharma" data-role="Waiter">Edit</button>
+                                <button class="btn btn-danger btn-delete">Delete</button>
+                            </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Staff Modal -->
+        <div class="modal fade" id="addStaffModal" tabindex="-1" aria-labelledby="addStaffModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Staff Details</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addStaffForm">
+                            <div class="mb-3">
+                                <label for="staffName" class="form-label">Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Staff Name" id="staffName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="staffRole" class="form-label">Role</label>
+                                <select class="form-control" id="staffRole" required>
+                                    <option value="">Select Role</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Cook">Cook</option>
+                                    <option value="Cleaner">Cleaner</option>
+                                    <option value="Waiter">Waiter</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Staff</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toastify JS -->
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <!-- Bootstrap JS Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const staffList = document.getElementById('staff-list');
+                const searchInput = document.getElementById('searchInput');
+                const addStaffForm = document.getElementById('addStaffForm');
+                const addStaffModal = new bootstrap.Modal(document.getElementById('addStaffModal'));
+
+                // Event listener for search input
+                searchInput.addEventListener('input', function (e) {
+                    const searchText = e.target.value.toLowerCase();
+                    const staffBoxes = staffList.getElementsByClassName('roombox');
+
+                    for (let box of staffBoxes) {
+                        const name = box.querySelector('h3').textContent.toLowerCase();
+                        if (name.includes(searchText)) {
+                            box.style.display = '';
+                        } else {
+                            box.style.display = 'none';
+                        }
+                    }
+                });
+
+                // Event listeners for filter buttons
+                document.getElementById('filterAll').addEventListener('click', function () {
+                    filterStaff('');
+                });
+
+                document.getElementById('filterManager').addEventListener('click', function () {
+                    filterStaff('Manager');
+                });
+
+                document.getElementById('filterCook').addEventListener('click', function () {
+                    filterStaff('Cook');
+                });
+
+                document.getElementById('filterCleaner').addEventListener('click', function () {
+                    filterStaff('Cleaner');
+                });
+
+                document.getElementById('filterWaiter').addEventListener('click', function () {
+                    filterStaff('Waiter');
+                });
+
+                // Function to filter staff by role
+                function filterStaff(role) {
+                    const staffBoxes = staffList.getElementsByClassName('roombox');
+
+                    for (let box of staffBoxes) {
+                        if (role === '' || box.getAttribute('data-role') === role) {
+                            box.style.display = '';
+                        } else {
+                            box.style.display = 'none';
+                        }
+                    }
+                }
+
+                // Event delegation for edit and delete buttons
+                staffList.addEventListener('click', function (e) {
+                    if (e.target.classList.contains('btn-delete')) {
+                        const staffBox = e.target.closest('.roombox');
+                        staffBox.remove();
+
+                        Toastify({
+                            text: "Staff deleted successfully!",
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "center",
+                            backgroundColor: "#FF0000",
+                            stopOnFocus: true
+                        }).showToast();
+                    }
+
+                    if (e.target.classList.contains('btn-edit')) {
+                        const staffBox = e.target.closest('.roombox');
+                        const name = staffBox.querySelector('h3').textContent;
+                        const role = staffBox.getAttribute('data-role');
+
+                        document.getElementById('staffName').value = name;
+                        document.getElementById('staffRole').value = role;
+
+                        addStaffModal.show();
+
+                        staffBox.remove();
+                    }
+                });
+
+                // Event listener for form submission
+                addStaffForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const name = document.getElementById('staffName').value;
+                    const role = document.getElementById('staffRole').value;
+
+                    const newStaffBox = document.createElement('div');
+                    newStaffBox.className = `roombox`;
+                    newStaffBox.setAttribute('data-role', role);
+                    newStaffBox.innerHTML = `
+                        <div class="text-center no-border">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3>${name}</h3>
+                            <div class="mb-1 staff-details">Role: ${role}</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-edit" data-name="${name}" data-role="${role}">Edit</button>
+                                <button class="btn btn-danger btn-delete">Delete</button>
+                            </div>
+                        </div>
+                    `;
+                    staffList.querySelector('.box-container').appendChild(newStaffBox);
+
+                    addStaffForm.reset();
+                    addStaffModal.hide();
+
+                    Toastify({
+                        text: "Staff added successfully!",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#00c853",
+                        stopOnFocus: true
+                    }).showToast();
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

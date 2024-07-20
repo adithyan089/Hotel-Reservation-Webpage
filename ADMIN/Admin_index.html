@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Admin_index.css">
+    <title>HOTEL LESNA - Admin</title>
+</head>
+<body>
+    <!-- Mobile view message -->
+    <div id="mobileview">
+        <h5>Admin panel doesn't show in mobile view</h5>
+    </div>
+    
+    <!-- Upper navigation bar -->
+    <nav class="uppernav">
+        <div class="logo">
+            <img class="logo" src="HotelsLogo.png" alt="logo">
+        </div>
+        <div class="logout">
+            <button class="btn btn-primary" style="background-color:red ; border: black;" onclick="showLogoutConfirmation()">Logout</button>
+        </div>
+    </nav>
+    <!-- Side navigation bar -->
+    <nav class="sidenav">
+        <ul>
+            <li class="pagebtn" data-target="frame1">
+                <img src="dashboard.png">&nbsp;&nbsp;Dashboard
+            </li>
+            <li class="pagebtn" data-target="frame2">
+                <img src="bed.png">&nbsp;&nbsp;Room Booking
+            </li>
+            <li class="pagebtn" data-target="frame3">
+                <img src="wallet.png">&nbsp;&nbsp;Payment
+            </li>
+            <li class="pagebtn" data-target="frame4">
+                <img src="bedroom.png">&nbsp;&nbsp;Rooms
+            </li>
+            <li class="pagebtn" data-target="frame5">
+                <img src="staff copy.png">&nbsp;&nbsp;Staff
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- Main content section -->
+    <div class="mainscreen">
+        <iframe class="frames frame1 active" src="Admin_dashboard.html" frameborder="0"></iframe>
+        <iframe class="frames frame2" src="Admin_roombook.html" frameborder="0"></iframe>
+        <iframe class="frames frame3" src="Admin_payment.html" frameborder="0"></iframe>
+        <iframe class="frames frame4" src="Admin_room.html" frameborder="0"></iframe>
+        <iframe class="frames frame5" src="staff.html" frameborder="0"></iframe>
+        <iframe class="iframeclass" id="logoutIframe" src="logout.html" frameborder="0"></iframe>
+    </div>
+    <div class="content1" id="content">
+        <div class="iframe-container" id="iframeContainer">
+            <button class="close-btn" onclick="closeIframe()">Close</button>
+            <iframe id="iframe" src=""></iframe>
+        </div>
+    </div>
+    <!-- JavaScript file -->
+    <script src="Admin_index.js"></script>
+</body>
+</html>

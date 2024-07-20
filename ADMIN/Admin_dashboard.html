@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Admin_dashboard.css">  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <title>HOTEL LESNA - Admin </title>
+</head>
+<body>
+  <div class="databox">
+    <div class="box roombookbox">
+      <h2>Total Booked Rooms</h1>
+      <h1>115 / 200</h1>  </div>
+    <div class="box guestbox">
+      <h2>Total Staff</h1>
+      <h1>65</h1>  </div>
+    <div class="box profitbox">
+      <h2>Profit</h1>
+      <h1><span>&#8377</span>2348k</h1></div>
+  </div>
+  <div class="chartbox">
+    <div class="bookroomchart">
+      <canvas id="bookroomchart"></canvas>
+      <h3 style="text-align: center;margin:10px 0;">Booked Room</h3>
+    </div>
+    <div class="profitchart">
+      <canvas id="profitchart"></canvas>
+      <h3 style="text-align:center;margin:20px 20px 20px 20px ;">Profit</h3>
+    </div>
+  </div>
+</body>
+
+<script>
+  // Pie Chart Code
+  const pieCtx = document.getElementById('bookroomchart').getContext('2d');
+  new Chart(pieCtx, {
+    type: 'pie',  // Pie chart
+    data: {
+      labels: ['Presidential', 'Executive','Superior', 'Deluxe'],
+      datasets: [{
+        label: 'Booked Rooms',
+        data: [13, 41, 55,30],  backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56','#FFCE91'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56','#FFCE91']
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });
+
+  // Bar Chart Code 
+  const barCtx = document.getElementById('profitchart').getContext('2d');
+  new Chart(barCtx, {
+    type: 'bar',
+    data: {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+      datasets: [{
+      label: 'Profit',
+      data: [1000000, 134400, 200000, 150000, 300000],
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1
+      },
+      {
+      label: 'Expenses',
+      data: [80000, 90000, 120000, 90000, 150000],
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1
+      },
+      {
+      label: 'Revenue',
+      data: [1500000, 1200000, 180000, 2000000, 2500000],
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgba(54, 162, 235, 1)',
+      borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+</html>
