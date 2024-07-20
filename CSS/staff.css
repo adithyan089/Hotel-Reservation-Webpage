@@ -1,0 +1,191 @@
+/* Importing Google fonts for the page */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Root variables for theme colors */
+:root {
+    --primary-color: #0808eb;
+    --secondary-color: #040604;
+    --success-color: #0be33d;
+    --danger-color: #fb0e0e;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #889fb7;
+    --text-color: #010000c8;
+    --background-color: #e4dbdb;
+}
+
+/* General body styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling the add room section */
+.addroomsection {
+    background-color: rgb(140, 126, 207);
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    height: 12%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addroomsection form {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addroomsection form label {
+    color: #000000;
+    margin-right: 10px;
+}
+
+.addroomsection form select,
+.addroomsection form button {
+    margin-right: 10px;
+}
+
+.addroomsection form button {
+    background-color: var(--success-color);
+    border: none;
+    color: #ffffff;
+    padding: 9px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.addroomsection form button:hover {
+    background-color: var(--success-color);
+    filter: brightness(0.9);
+}
+
+/* Styling room section */
+.room {
+    padding-top: 80px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+}
+
+.room .row {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.room-item{
+    background-color: var(--danger-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 23%;
+    text-align: center;
+    transition: box-shadow 0.3s;
+    margin-bottom: 20px;
+}
+
+.room-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.room-item h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.room-item p {
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.room-item button {
+    background-color: var(--primary-color);
+    border: none;
+    color: #af0f0f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.room-item button:hover {
+    background-color: var(--danger-color);
+    filter: brightness(0.9);
+}
+
+/* Box-container styling */
+.box-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    margin-top: 20px;
+}
+
+/* Staff type specific colors */
+
+.staff-item.receptionist {
+    background-color: #ff0000; /* Receptionist */
+}
+
+.staff-item.cleaner {
+    background-color: #00a5ff; /* Cleaner */
+}
+
+.staff-item.manager {
+    background-color: #32a852; /* Manager */
+}
+
+.staff-item.security {
+    background-color: #ff80c0; /* Security */
+}
+
+.staff-item.chef {
+    background-color: #d41b7a; /* Chef */
+}
+
+.staff-item.waiter {
+    background-color: #960d28; /* Waiter */
+}
+
+.staff-item.bellboy {
+    background-color: #ff9922; /* Bellboy */
+}
+
+.staff-item.housekeeping {
+    background-color: #593eae; /* Housekeeping */
+}
+
+.staff-item.driver {
+    background-color: #17a2b8; /* Driver */
+}
+
+.staff-item.gardener {
+    background-color: #d0ff00; /* Gardener */
+}
+
+.staff-item.repairman {
+    background-color: #e67017; /* Repairman */
+}
+
+.staff-item.nurse {
+    background-color: #aaff00; /* Nurse */
+}
+
+.staff-item.none {
+    background-color: #28a745; /* None Staff Type */
+}
