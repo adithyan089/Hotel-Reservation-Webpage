@@ -1,0 +1,57 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set background color for the page */
+body {
+    background-color: #f2f2f2;
+}
+
+/* Style the containers */
+.container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Give colors to each container */
+.container:nth-child(odd) {
+    background-color: #e6f7ff;
+}
+
+.container:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Arrange the containers */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Style the elements inside the containers */
+.container h1 {
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.container p {
+    color: #666666;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.container a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.container a:hover {
+    text-decoration: underline;
+}
