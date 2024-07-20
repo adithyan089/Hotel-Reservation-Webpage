@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout Confirmation</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: "Inter", sans-serif;
+      background-color: none;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 450px;
+      max-width: 90%;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .logout-btn {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
+    .logout-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .cancel-btn {
+      background-color: #3498db;
+      color: #fff;
+    }
+
+    .cancel-btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Are you sure you want to log out?</h2>
+    <div class="buttons">
+      <button class="btn logout-btn" onclick="logout()">Log Out</button>
+      <button class="btn cancel-btn" onclick="cancel()">Cancel</button>
+    </div>
+  </div>
+  <script>
+    const login_logout = window.parent.document.getElementById("loginlogout");
+    function logout() {
+        window.parent.document.getElementById('iframe').src = 'login.html';
+        login_logout.textContent = 'Login';
+        login_logout.setAttribute('onclick',"loadPage('login.html')")
+      const iframes = window.parent.document.getElementsByTagName('iframe');
+      for (let i = 0; i < iframes.length; i++) {
+        if (iframes[i].id !== 'iframe') {
+          iframes[i].src = '';
+        }
+      }
+    }
+    function cancel() {
+        window.parent.document.getElementById('iframeContainer').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

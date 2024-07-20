@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: "Inter", sans-serif;
+      background-color: none;
+    }
+
+    .container {
+      background: #ffffff66;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 450px;
+      height: 450px;
+      max-width: 90%;
+      padding: 30px;
+      padding-top: 50px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      color: #060606;
+      font-weight: 6000;
+      font-style: bold;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      margin-bottom: 20px;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #6f6c6c;
+      border-radius: 5px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #1f8fdb;
+      outline: none;
+    }
+
+    .submt {
+      padding: 12px 20px;
+      background-color: #3c8abe;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .submt:hover {
+      background-color: #0598fa;
+    }
+
+    .toggle-btn {
+      background: none;
+      border: none;
+      color: #3498db;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 15px;
+      margin-top: 15px;
+      transition: color 0.3s;
+    }
+
+    .toggle-btn:hover {
+      color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <h2 id="form-title">Login</h2>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button class="submt" type="submit">Login</button>
+    </form>
+    <form id="register-form" style="display: none;">
+      <input type="text" id="new-username" placeholder="Username" required>
+      <input type="email" id="new-email" placeholder="Email" required>
+      <input type="password" id="new-password" placeholder="Password" required>
+      <button class="submt" type="submit">Register</button>
+    </form>
+    <button class="toggle-btn" id="toggle-btn">Don't have an account? Register</button>
+  </div>
+
+  <script>
+    const container = document.getElementById('container');
+    const formTitle = document.getElementById('form-title');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const toggleBtn = document.getElementById('toggle-btn');
+    const login_logout = window.parent.document.getElementById("loginlogout");
+
+    toggleBtn.addEventListener('click', () => {
+      if (loginForm.style.display === 'none') {
+        loginForm.style.display = 'flex';
+        registerForm.style.display = 'none';
+        formTitle.textContent = 'Login';
+        toggleBtn.textContent = "Don't have an account? Register";
+      } else {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'flex';
+        formTitle.textContent = 'Register';
+        toggleBtn.textContent = 'Already have an account? Login';
+      }
+    });
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const specificUsername = "admin@123";
+        const specificPassword = "admin";
+        const userUsername = "user@123";
+        const userPassword = "user";
+
+        if (email === specificUsername && password === specificPassword) {
+          sessionStorage.setItem('loggedIn', 'admin');
+          window.parent.location.href = 'Admin_index.html';
+        } else if(email === userUsername && password === userPassword) {
+          sessionStorage.setItem('loggedIn', 'user');
+          window.parent.location.href = 'Index.html';
+        } else {
+          login_logout.textContent = 'Logout';
+          login_logout.setAttribute('onclick', "loadPage('logout.html')");
+          window.parent.document.getElementById('iframeContainer').style.display = 'none';
+        }
+  });
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('new-username').value;
+      const email = document.getElementById('new-email').value;
+      const password = document.getElementById('new-password').value;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Reservation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: none;
+            color: #333;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Title styling */
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Tabs styling */
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 0;
+            text-align: center;
+            background-color: #6c5ce7; /* Purple background */
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .tab:not(:last-child) {
+            margin-right: 10px; /* Add space between tabs */
+        }
+
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(108, 92, 231, 0.3); /* Light shadow on hover */
+        }
+
+        .tab.active {
+            background-color: #ff6b6b; /* Red background for active tab */
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(255, 107, 107, 0.5); /* Red shadow when active */
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Hotel Lesna</h1>
+        <div class="tabs">
+            <div class="tab active" id="guest-info-tab">Guest Information</div>
+            <div class="tab" id="reservation-info-tab">Reservation Details</div>
+        </div>
+        <form id="reservation-form">
+            <div class="content active" id="guest-info-content">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country" required>
+                        <option value="" disabled selected>Select your country</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Australia">Australia</option>
+                        <option value="The Bahamas">The Bahamas</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Canada">Canada</option>
+                        <option value="China">China</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Italy">Italy</option>
+                        <option value="India">India</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+            </div>
+            <div class="content" id="reservation-info-content">
+                <div class="form-group">
+                    <label for="room-type">Room Type</label>
+                    <select id="room-type" name="room-type" required>
+                        <option value="" disabled selected>Select room type</option>
+                        <option value="presidential">Presidential Room</option>
+                        <option value="deluxe">Deluxe Room</option>
+                        <option value="superior">Superior Room</option>
+                        <option value="executive">Executive Room</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bedding-type">Bedding Type</label>
+                    <select id="bedding-type" name="bedding-type" required>
+                        <option value="" disabled selected>Select bedding type</option>
+                        <option value="single">Single Bed</option>
+                        <option value="double">Double Bed</option>
+                        <option value="queen">Triple Bed</option>
+                        <option value="king">Quad Bed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="num-rooms">Number of Rooms</label>
+                    <input type="number" id="num-rooms" name="num-rooms" min="1" placeholder="Enter number of rooms" required>
+                </div>
+                <div class="form-group">
+                    <label for="meal">Meal Preference</label>
+                    <input type="text" id="meal" name="meal" placeholder="Enter your meal preference">
+                </div>
+                <div class="form-group">
+                    <label for="check-in">Check-in Date</label>
+                    <input type="date" id="check-in" name="check-in" required>
+                </div>
+                <div class="form-group">
+                    <label for="check-out">Check-out Date</label>
+                    <input type="date" id="check-out" name="check-out" required>
+                </div>
+            </div>
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(otherTab => {
+                    otherTab.classList.remove('active');
+                });
+                tab.classList.add('active');
+
+                const tabContentId = tab.id.replace('-tab', '-content');
+                document.querySelectorAll('.content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tabContentId).classList.add('active');
+            });
+        });
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const roomType = getQueryParam('roomType');
+            if (roomType) {
+                document.getElementById('room-type').value = roomType;
+            }
+        });
+    </script>
+</body>
+</html>

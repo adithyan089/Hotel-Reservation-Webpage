@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Export Data</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#exportexcel').click(function() {
+                $.ajax({
+                    url: 'exportdata.php',
+                    type: 'POST',
+                    dataType: 'html',
+                    success: function(response) {
+                        // Handle the response and update the HTML content
+                        // You can use response to update a table or any other element on the page
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="exportexcel">Export Data</button>
+    <div id="dataContainer"></div>
+</body>
+</html>
