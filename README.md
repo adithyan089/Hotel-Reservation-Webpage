@@ -1,2 +1,2 @@
 # Hotel-Reservation-Webpage
-This Webpage is for hotel reservation which includes the front-end olny..In this it contains both the User Page and Admin Pages
+This Webpage is the front-end for a hotel reservation using HTML,CSS,JavaScript. Contains both the User Page and Admin Pages..
